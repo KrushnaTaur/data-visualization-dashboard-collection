@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sales Dashboard</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+
+/* ===== GLOBAL ===== */
+
+body{
+margin:0;
+font-family:Arial, Helvetica, sans-serif;
+background:#f1f5f9;
+color:#1e293b;
+}
+
+.container{
+padding:20px;
+max-width:1200px;
+margin:auto;
+}
+
+/* ===== HEADER ===== */
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+}
+
+header h1{
+font-size:28px;
+}
+
+/* ===== KPI CARDS ===== */
+
+.kpi-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+margin-bottom:25px;
+}
+
+.card{
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 3px 10px rgba(0,0,0,0.05);
+}
+
+.card h3{
+margin:0;
+font-size:14px;
+color:#64748b;
+}
+
+.card p{
+font-size:24px;
+font-weight:bold;
+margin-top:8px;
+}
+
+/* ===== CHART GRID ===== */
+
+.chart-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+gap:20px;
+}
+
+.chart-card{
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 3px 10px rgba(0,0,0,0.05);
+}
+
+.chart-card h3{
+margin-bottom:10px;
+font-size:16px;
+}
+
+/* ===== FOOTER ===== */
+
+footer{
+text-align:center;
+margin-top:30px;
+font-size:14px;
+color:#64748b;
+}
+
+canvas{
+max-height:300px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+<h1>📊 Sales Dashboard</h1>
+</header>
+
+
+<!-- KPI CARDS -->
+
+<div class="kpi-grid">
+
+<div class="card">
+<h3>Total Revenue</h3>
+<p>$84,500</p>
+</div>
+
+<div class="card">
+<h3>Total Orders</h3>
+<p>1,245</p>
+</div>
+
+<div class="card">
+<h3>Total Customers</h3>
+<p>870</p>
+</div>
+
+<div class="card">
+<h3>Monthly Growth</h3>
+<p>+12.4%</p>
+</div>
+
+</div>
+
+
+<!-- CHARTS -->
+
+<div class="chart-grid">
+
+<div class="chart-card">
+<h3>Monthly Revenue</h3>
+<canvas id="revenueChart"></canvas>
+</div>
+
+<div class="chart-card">
+<h3>Sales by Category</h3>
+<canvas id="categoryChart"></canvas>
+</div>
+
+<div class="chart-card">
+<h3>Sales by Region</h3>
+<canvas id="regionChart"></canvas>
+</div>
+
+</div>
+
+<footer>
+Sales Analytics Dashboard | Chart.js Demo
+</footer>
+
+</div>
+
+
+<script>
+
+/* ===== MONTHLY REVENUE LINE CHART ===== */
+
+new Chart(document.getElementById("revenueChart"),{
+type:"line",
+data:{
+labels:["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
+datasets:[{
+label:"Revenue",
+data:[5000,6200,7500,8200,9100,10000,12000,11500,13000,14500,15000,16500],
+fill:true,
+borderColor:"#3b82f6",
+backgroundColor:"rgba(59,130,246,0.2)",
+tension:0.4
+}]
+},
+options:{
+responsive:true,
+plugins:{legend:{display:true}}
+}
+})
+
+
+/* ===== SALES BY CATEGORY BAR CHART ===== */
+
+new Chart(document.getElementById("categoryChart"),{
+type:"bar",
+data:{
+labels:["Electronics","Clothing","Home","Sports","Beauty"],
+datasets:[{
+label:"Sales",
+data:[15000,12000,9000,7000,6500],
+backgroundColor:[
+"#6366f1",
+"#22c55e",
+"#f59e0b",
+"#ef4444",
+"#14b8a6"
+]
+}]
+},
+options:{
+responsive:true
+}
+})
+
+
+/* ===== SALES BY REGION DOUGHNUT ===== */
+
+new Chart(document.getElementById("regionChart"),{
+type:"doughnut",
+data:{
+labels:["North America","Europe","Asia","Other"],
+datasets:[{
+data:[40,25,25,10],
+backgroundColor:[
+"#3b82f6",
+"#10b981",
+"#f59e0b",
+"#ef4444"
+]
+}]
+},
+options:{
+responsive:true
+}
+})
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Social Media Analytics Dashboard</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+
+/* ===== GLOBAL ===== */
+
+body{
+margin:0;
+font-family:Arial, Helvetica, sans-serif;
+background:#f1f5f9;
+color:#1e293b;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:20px;
+}
+
+/* ===== HEADER ===== */
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+}
+
+header h1{
+font-size:28px;
+}
+
+/* ===== KPI CARDS ===== */
+
+.kpi-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+margin-bottom:25px;
+}
+
+.card{
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 3px 10px rgba(0,0,0,0.05);
+}
+
+.card h3{
+margin:0;
+font-size:14px;
+color:#64748b;
+}
+
+.card p{
+font-size:24px;
+font-weight:bold;
+margin-top:8px;
+}
+
+/* ===== CHART GRID ===== */
+
+.chart-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+gap:20px;
+}
+
+.chart-card{
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 3px 10px rgba(0,0,0,0.05);
+}
+
+.chart-card h3{
+margin-bottom:10px;
+}
+
+canvas{
+max-height:300px;
+}
+
+/* ===== FOOTER ===== */
+
+footer{
+text-align:center;
+margin-top:30px;
+font-size:14px;
+color:#64748b;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+<h1>📱 Social Media Analytics Dashboard</h1>
+</header>
+
+
+<!-- KPI CARDS -->
+
+<div class="kpi-grid">
+
+<div class="card">
+<h3>Total Followers</h3>
+<p>48,500</p>
+</div>
+
+<div class="card">
+<h3>Engagement Rate</h3>
+<p>6.8%</p>
+</div>
+
+<div class="card">
+<h3>Posts This Month</h3>
+<p>32</p>
+</div>
+
+</div>
+
+
+<!-- CHARTS -->
+
+<div class="chart-grid">
+
+<div class="chart-card">
+<h3>Follower Growth</h3>
+<canvas id="followersChart"></canvas>
+</div>
+
+<div class="chart-card">
+<h3>Engagement per Post</h3>
+<canvas id="engagementChart"></canvas>
+</div>
+
+<div class="chart-card">
+<h3>Content Type Distribution</h3>
+<canvas id="contentChart"></canvas>
+</div>
+
+</div>
+
+<footer>
+Social Media Analytics Dashboard | Chart.js
+</footer>
+
+</div>
+
+
+
+<script>
+
+/* ===== FOLLOWER GROWTH LINE CHART ===== */
+
+new Chart(document.getElementById("followersChart"),{
+
+type:"line",
+
+data:{
+labels:["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug"],
+
+datasets:[{
+label:"Followers",
+data:[12000,15000,18000,22000,27000,33000,40000,48500],
+borderColor:"#3b82f6",
+backgroundColor:"rgba(59,130,246,0.2)",
+fill:true,
+tension:0.4
+}]
+},
+
+options:{responsive:true}
+
+})
+
+
+
+/* ===== ENGAGEMENT PER POST BAR CHART ===== */
+
+new Chart(document.getElementById("engagementChart"),{
+
+type:"bar",
+
+data:{
+labels:[
+"Post 1",
+"Post 2",
+"Post 3",
+"Post 4",
+"Post 5"
+],
+
+datasets:[{
+label:"Engagement (%)",
+data:[5.2,6.1,7.4,6.8,8.0],
+backgroundColor:[
+"#3b82f6",
+"#22c55e",
+"#f59e0b",
+"#ef4444",
+"#6366f1"
+]
+}]
+},
+
+options:{responsive:true}
+
+})
+
+
+
+/* ===== CONTENT TYPE PIE CHART ===== */
+
+new Chart(document.getElementById("contentChart"),{
+
+type:"pie",
+
+data:{
+labels:[
+"Images",
+"Videos",
+"Reels",
+"Stories"
+],
+
+datasets:[{
+data:[35,25,30,10],
+
+backgroundColor:[
+"#3b82f6",
+"#22c55e",
+"#f59e0b",
+"#ef4444"
+]
+}]
+},
+
+options:{responsive:true}
+
+})
+
+</script>
+
+</body>
+</html>
